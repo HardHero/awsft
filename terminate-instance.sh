@@ -1,7 +1,10 @@
 
 
 #instanceId=`aws ec2 describe-instances| jq '.Reservations[].Instances[].InstanceId'`
-
-aws ec2 terminate-instances --instance-id i-f895b84b
+qInstanceID=$(cat awsft.json|jq '.Reservations[].Instances[].InstanceId')
+InstanceID=$(cut -c1 $qInstance)
+ 
+ 
+aws ec2 terminate-instances --instance-id $InstanceID
 
 
